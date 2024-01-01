@@ -11,11 +11,13 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
+  const scroll: boolean = true
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <div className='fixed top-0 left-0 z-50 w-full'>
-          <Navbar/>
+          <Navbar />
         </div>
         <div>
           {children}

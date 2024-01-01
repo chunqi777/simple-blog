@@ -1,20 +1,30 @@
 'use client'
 
-import clsx from "clsx"
-import { useEffect, useState } from "react"
-import NavLinks from "./navLinks"
+import clsx from "clsx";
+import { useLayoutEffect, useState } from "react";
+import NavLinks from "./navLinks";
+
+
+function isScrollTop(): boolean {
+    return document.documentElement.scrollTop === 0
+}
 
 export default function Navbar() {
-    const [backgroundColor, setBackgroundColor] = useState(true)
-    
+    const [backgroundColor, setBackgroundColor] = useState<boolean | null>(true)
 
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
+    useLayoutEffect(() => {
+        const handleScroll = () => {
+            setBackgroundColor(isScrollTop())
+        }
+        window.scrollTo(0, 0)
+        handleScroll()
+
+        window.addEventListener("scroll", handleScroll)
 
         return () => {
             window.removeEventListener("scroll", handleScroll)
         }
-    })
+    }, [])
 
     return (
         <div className={clsx("w-full h-14 hidden text-center sm:flex text-white transition-all",

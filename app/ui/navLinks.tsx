@@ -22,9 +22,9 @@ export default function NavLinks() {
                         href={link.href}
                         className={clsx(
                             'flex w-[120px] text-nowrap h-full transition-all relative text-xl',
-                            'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[115px] after:h-1 after:hover:bg-white after:transition-all after:rounded-[2px]',
+                            'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[115px] after:h-1 after:hover:bg-[rgba(255,255,255,0.7)] after:transition-all after:rounded-[2px]',
                             {
-                                'after:bg-white': pathname === link.href
+                                'after:bg-[rgba(255,255,255,0.7)]': pathname === link.href
                             }
                         )}
                     >
