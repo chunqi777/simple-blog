@@ -21,11 +21,9 @@ export default function NavLinks() {
                         key={link.name}
                         href={link.href}
                         className={clsx(
-                            'flex w-[120px] text-nowrap h-full transition-all relative text-xl',
-                            'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[115px] after:h-1 after:hover:bg-[rgba(255,255,255,0.7)] after:transition-all after:rounded-[2px]',
-                            {
-                                'after:bg-[rgba(255,255,255,0.7)]': pathname === link.href
-                            }
+                            'flex w-[120px] text-nowrap h-full  relative text-xl hover:text-[#FE9600] transition-[color] duration-[450ms]',
+                            'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:hover:w-[115px] after:h-1 after:rounded-[2.5px] after:transition-all after:duration-[450ms] after:hover:bg-[#FE9600]',
+                            'focus:text-[#FE9600] focus:after:w-[115px] focus:after:bg-[#FE9600]'
                         )}
                     >
                         <p className="w-full h-full flex items-center justify-center">{link.name}</p>

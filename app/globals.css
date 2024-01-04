@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'JelleeFont';
+    src: url('/font/Jellee.ttf')format('truetype');
+}
+
+@font-face {
+    font-family: 'QuicksandBold';
+    src: url('/font/QuicksandBold.ttf')format('truetype');
+}
+
+@keyframes arrowUpToDown {
+    0% {
+        bottom: 17px
+    }
+
+    50% {
+        bottom: 8px
+    }
+
+    100% {
+        bottom: 17px
+    }
+}
+
+.arrow {
+    @apply absolute w-12 h-12 bottom-[17px] left-[50%] -translate-x-[50%] animate-[arrowUpToDown_2s_infinite] cursor-pointer;
+}

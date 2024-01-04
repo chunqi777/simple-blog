@@ -16,7 +16,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='fixed top-0 left-0 z-50 w-full'>
+        <div className='fixed top-0 z-[9999] left-0 w-full'>
           <Navbar />
         </div>
         <div>

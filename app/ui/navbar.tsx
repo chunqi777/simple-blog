@@ -10,7 +10,7 @@ function isScrollTop(): boolean {
 }
 
 export default function Navbar() {
-    const [backgroundColor, setBackgroundColor] = useState<boolean | null>(true)
+    const [ScrollTop, setBackgroundColor] = useState<boolean | null>(true)
 
     useLayoutEffect(() => {
         const handleScroll = () => {
@@ -27,10 +27,12 @@ export default function Navbar() {
     }, [])
 
     return (
-        <div className={clsx("w-full h-14 hidden text-center sm:flex text-white transition-all",
+        <div className={clsx("w-full h-14 hidden z-[9999] text-center sm:flex text-[#464646] hover:bg-[rgba(255,255,255,.95)] transition-all duration-[400ms] font-[QuicksandBold]",
+            " focus-within:bg-[rgba(255,255,255,.95)] focus-within:shadow-[0_1px_40px_-8px_rgba(0,0,0,.5)]",
             {
-                "bg-[#ffffff00]": backgroundColor,
-                "bg-[rgba(0,0,0,0.7)]": !backgroundColor
+                "bg-[#ffffff00]": ScrollTop,
+                "bg-[rgba(255,255,255,.95)]": !ScrollTop,
+                "shadow-[0_1px_40px_-8px_rgba(0,0,0,.5)]": !ScrollTop,
             })}>
             <div className="w-full h-full flex px-4 justify-between">
                 <div className="min-w-52 text-4xl opacity-100 flex items-center justify-center">
