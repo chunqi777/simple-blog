@@ -4,7 +4,7 @@ import Overview from "./ui/overview";
 
 
 export default function Home() {
-
+  // 随机背景
   const backgroundImage = "url(/background/" + randomInt(1, 4) + ".png)"
   return (
     <div className="flex flex-col">
