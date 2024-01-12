@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { cardValue } from "../lib/data";
 
-export default function Card({ value }: { value: cardValue }) {
+export default function Card({ value, index }: { value: cardValue, index: string }) {
     return (
-        <Link href={"/"} className="card_wrapper">
+        <Link href={"/paper/" + index} className="card_wrapper">
             <div className="card_img">
                 <Image
                     src={value.imgUrl}
@@ -35,7 +35,7 @@ export default function Card({ value }: { value: cardValue }) {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 </svg>
                             </i>
-                            {value.view}
+                            {index}
                         </div>
                         <div className="flex items-center">
                             <i className="h-[18px] w-[18px] mx-1">

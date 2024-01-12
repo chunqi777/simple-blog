@@ -1,0 +1,55 @@
+.markdown {
+    @apply font-["QuicksandMedium",monospace] font-["aroundChinese",monospace] md:px-0 px-2 transition-all;
+}
+
+.markdown p {
+    @apply block text-base w-auto;
+    line-height: 1.7rem;
+}
+
+.markdown code{
+    @apply bg-[rgba(254,250,199,1)] text-[#FE9600] p-1 rounded-md
+}
+
+.markdown a{
+    @apply text-[#FE9600];
+}
+
+.markdown strong {
+    @apply font-[800]
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+    @apply font-[600] my-6;
+    line-height: 1.25rem;
+}
+
+.markdown h1 {
+    @apply block text-4xl;
+
+}
+
+.markdown h2 {
+    @apply block text-3xl pb-2 border-b-[2px] border-dotted border-[#eaecef];
+}
+
+.markdown h3 {
+    @apply text-2xl
+}
+
+.markdown h4 {
+    @apply text-xl
+}
+
+.markdown h5 {
+    @apply text-lg
+}
+
+.markdown h6 {
+    @apply text-base
+}

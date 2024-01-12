@@ -1,86 +1,52 @@
-import { cardValue } from "../lib/data";
+'use client'
+
+import { memo, useLayoutEffect, useRef, useState } from "react";
+import { cardValue, fetchCardData } from "../lib/data";
 import Card from "./card";
 
-const date = new Date();
+interface CardGroupProps {
+    currentNum: number
+}
 
-// 获取年份
-const year = date.getFullYear();
+const CardGroup = memo(function CardGroup({ currentNum }: CardGroupProps) {
+    const [cardValues, setCardValues] = useState<cardValue[]>([])
+    const cardValuesRef = useRef(cardValues)
+    const [isLoading, setIsLoading] = useState(true)
 
-// 获取月份（注意：月份返回的是 0 到 11 的数字，需要加 1）
-const month = date.getMonth() + 1;
+    useLayoutEffect(() => {
+        const getValues = () => {
+            fetchCardData().then(res => {
+                setCardValues(res)
+                cardValuesRef.current = res
+                setIsLoading(false)
+            })
+        }
 
-// 获取日期
-const day = date.getDate();
+        if (localStorage.getItem('cardValues' + currentNum)) {
+            setCardValues(JSON.parse(localStorage.getItem('cardValues' + currentNum) as string) as cardValue[])
+            setIsLoading(false)
+        } else getValues() // 初始化
 
-// 将年、月、日拼接成字符串
-const formattedDate = `${year}-${month}-${day}`;
+        return () => {
+            if (cardValuesRef.current.length !== 0 && cardValuesRef.current !== null) {
+                localStorage.setItem("cardValues" + currentNum, JSON.stringify(cardValuesRef.current))
+            }
+        }
+    }, [currentNum])
 
-const Values: cardValue[] = [
-    {
-        date: formattedDate,
-        title: "title",
-        view: 100,
-        type: "type",
-        content: "content",
-        imgName: "2",
-        imgUrl: "/background/2.png",
-    },
-    {
-        date: formattedDate,
-        title: "title",
-        view: 100,
-        type: "type",
-        content: "content",
-        imgName: "2",
-        imgUrl: "/background/2.png",
-    },
-    {
-        date: formattedDate,
-        title: "title",
-        view: 100,
-        type: "type",
-        content: "content",
-        imgName: "2",
-        imgUrl: "/background/2.png",
-    },
-    {
-        date: formattedDate,
-        title: "title",
-        view: 100,
-        type: "type",
-        content: "content",
-        imgName: "2",
-        imgUrl: "/background/2.png",
-    },
-    {
-        date: formattedDate,
-        title: "title",
-        view: 100,
-        type: "type",
-        content: "content",
-        imgName: "2",
-        imgUrl: "/background/2.png",
-    },
-    {
-        date: formattedDate,
-        title: "title",
-        view: 100,
-        type: "type",
-        content: "content",
-        imgName: "2",
-        imgUrl: "/background/2.png",
+    if (isLoading) {
+        return <div>loading...</div>
     }
-]
 
-
-export default function CardGroup() {
     return (
         <>
-            {Values.map((value, index) => {
+            {cardValues.map((value, index) => {
                 return (
-                    <Card key={index} value={value} />
+                    <Card key={index} index={currentNum + "-" + index} value={value} />
                 )
             })}
         </>
-    )
-}
+    );
+})
+
+export default CardGroup;

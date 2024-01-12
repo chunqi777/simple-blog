@@ -1,8 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+
+'use client'
+
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import CardGroup from "./cardGroup";
+
 
 const images = [
     { name: "2", url: "/background/2.png" },
@@ -10,8 +15,27 @@ const images = [
     { name: "4", url: "/background/4.png" },
 ]
 
-export default function Content() {
 
+export default function Content() {
+    const [groupNum, setGroupNum] = useState<number>(1);
+    const groupNumRef = useRef(groupNum);
+
+
+    const handleClick = () => {
+        setGroupNum(groupNum + 1);
+        groupNumRef.current = groupNum + 1;
+    }
+
+    useEffect(() => {
+        const savedGroupNum = parseInt(localStorage.getItem('groupNum') || '1');
+        setGroupNum(savedGroupNum);
+        groupNumRef.current = savedGroupNum;
+
+
+        return () => {
+            localStorage.setItem('groupNum', groupNumRef.current.toString());
+        };
+    }, [])
     return (
         <div className="flex h-full mx-auto">
             <div className="flex md:w-[750px] flex-col">
@@ -55,8 +79,17 @@ export default function Content() {
                         </i>
                         <p className="font-[QuicksandBold]">Discovery</p>
                     </div>
-                    <CardGroup />
+                    <>
+                        {[...Array(groupNum)].map((_, index) => {
+                            return (
+
+                                <CardGroup key={index} currentNum={index} />
+
+                            )
+                        })}
+                    </>
                 </div>
+                <button onClick={handleClick}>load</button>
             </div>
         </div>
     )

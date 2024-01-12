@@ -16,19 +16,26 @@ export default function Navbar() {
         const handleScroll = () => {
             setBackgroundColor(isScrollTop())
         }
-        window.scrollTo(0, 0)
+
+        const handleLocalStorage = () => {
+            localStorage.clear()
+            window.scrollTo(0, 0)
+        }
+
         handleScroll()
 
+        window.addEventListener("beforeunload", handleLocalStorage)
         window.addEventListener("scroll", handleScroll)
 
         return () => {
+            window.removeEventListener("beforeunload", handleLocalStorage)
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
 
     return (
         <div className={clsx("w-full h-14 hidden z-[9999] text-center sm:flex text-[#464646] hover:bg-[rgba(255,255,255,.95)] transition-all duration-[400ms] font-[QuicksandBold]",
-            " focus-within:bg-[rgba(255,255,255,.95)] focus-within:shadow-[0_1px_40px_-8px_rgba(0,0,0,.5)]",
+
             {
                 "bg-[#ffffff00]": ScrollTop,
                 "bg-[rgba(255,255,255,.95)]": !ScrollTop,
