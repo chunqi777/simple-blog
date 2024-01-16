@@ -1,6 +1,7 @@
 'use client'
 
 import clsx from "clsx";
+import Link from "next/link";
 import { useLayoutEffect, useState } from "react";
 import NavLinks from "./navLinks";
 
@@ -42,9 +43,9 @@ export default function Navbar() {
                 "shadow-[0_1px_40px_-8px_rgba(0,0,0,.5)]": !ScrollTop,
             })}>
             <div className="w-full h-full flex px-4 justify-between">
-                <div className="min-w-52 text-4xl opacity-100 flex items-center justify-center">
+                <Link href={"/"} className="min-w-52 text-4xl opacity-100 flex items-center justify-center">
                     <div>LOGO</div>
-                </div>
+                </Link>
                 <div className="flex justify-end h-full items-center">
                     <div className="min-w-52 text-4xl">
                         <div>SEARCH</div>

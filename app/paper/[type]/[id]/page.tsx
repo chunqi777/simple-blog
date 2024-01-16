@@ -3,6 +3,7 @@ import Image from "next/image"
 
 interface paperProps {
     params: {
+        type: string,
         id: string
     }
 }

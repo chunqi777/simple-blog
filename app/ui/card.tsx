@@ -4,7 +4,7 @@ import { cardValue } from "../lib/data";
 
 export default function Card({ value, index }: { value: cardValue, index: string }) {
     return (
-        <Link href={"/paper/" + index} className="card_wrapper">
+        <Link href={"/paper/type/" + index} className="card_wrapper">
             <div className="card_img">
                 <Image
                     src={value.imgUrl}

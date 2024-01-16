@@ -7,7 +7,7 @@ import Link from "next/link";
 const links = [
     { name: 'Home', href: '/' },
     { name: 'OverView', href: '/dashboard/invoices' },
-    { name: 'Type', href: '/dashboard/customers' },
+    { name: 'Type', href: '/archives' },
 ];
 
 export default function NavLinks() {
