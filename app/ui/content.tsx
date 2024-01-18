@@ -5,8 +5,8 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import CardGroup from "./cardGroup";
+import { useLayoutEffect, useRef, useState } from "react";
+import CardGroup from "./cards/cardGroup";
 
 
 const images = [
@@ -26,7 +26,7 @@ export default function Content() {
         groupNumRef.current = groupNum + 1;
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const savedGroupNum = parseInt(localStorage.getItem('groupNum') || '1');
         setGroupNum(savedGroupNum);
         groupNumRef.current = savedGroupNum;

@@ -1,11 +1,11 @@
 import Link from "next/link"
 
-export default function TypeHome() {
+export default function ArchivesHome() {
 
     const data = ["随便聊聊", "python", "c++", "java", "js", "html", "css", "ts", "c#", "php", "sql", "go", "rust", "kotlin", "swift", "dart",]
 
     return (
-        <div className="w-full h-screen flex justify-center items-center pt-[56px]">
+        <div className="w-full h-screen flex justify-center items-center pt-[56px] bg-slate-50">
             <div className="w-full md:w-[750px] min-h-3/4  flex flex-col justify-center items-center flex-wrap overflow-hidden">
                 <div className="flex flex-wrap justify-center">
                     <>

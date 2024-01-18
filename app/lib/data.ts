@@ -1,3 +1,5 @@
+'use server'
+
 import { unstable_noStore } from "next/cache";
 
 export type cardValue = {
@@ -20,7 +22,7 @@ const value: cardValue = {
     imgUrl: "/background/5.png",
 }
 
-export function fetchNullData() {
+export async function fetchNullData() {
     const values: cardValue[] = [];
     return values;
 }
@@ -32,9 +34,17 @@ export async function fetchCardData() {
         values.push(value);
     }
 
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    return values;
+}
 
+export async function fetchTypeListData() {
+    unstable_noStore()
+    const values: cardValue[] = [];
+    for (let i = 0; i < 10; i++) {
+        values.push(value);
+    }
 
     return values;
 }

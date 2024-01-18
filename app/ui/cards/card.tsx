@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cardValue } from "../lib/data";
+import { cardValue } from "../../lib/data";
+import "./card.css";
 
 export default function Card({ value, index }: { value: cardValue, index: string }) {
     return (
@@ -15,9 +16,9 @@ export default function Card({ value, index }: { value: cardValue, index: string
                 />
             </div>
             <div className="card_content_wrapper">
-                <div className="card_content w-[80%]">
-                    <div className="date text-[#888] font-[12px] flex items-center">
-                        <i className="icon_time w-[18px] h-[18px] mx-1 inline-block">
+                <div className="card_content">
+                    <div className="date">
+                        <i className="icon_time">
                             <svg data-slot="icon" fill="none" strokeWidth="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                             </svg>
@@ -27,7 +28,7 @@ export default function Card({ value, index }: { value: cardValue, index: string
                     <div className="title">
                         基于 AIDA64 和现代 web 技术的电脑性能监控页基于 AIDA64 和现代 web 技术的电脑性能监控页
                     </div>
-                    <div className="meta flex flex-row justify-around text-[#888] text-[13px]">
+                    <div className="meta">
                         <div className="flex items-center">
                             <i className="h-[18px] w-[18px] mx-1">
                                 <svg data-slot="icon" fill="none" strokeWidth={1.5} stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -46,7 +47,7 @@ export default function Card({ value, index }: { value: cardValue, index: string
                             {value.type}
                         </div>
                     </div>
-                    <div className="content my-4 text-[#666] text-[15px]">
+                    <div className="content">
                         <p>
                             基于 AIDA64 和现代 web 技术的电脑性能监控页基于 AIDA64 和现代 web 技术的电脑性能监控页基于 AIDA64 和现代 web 技术的电脑性能监控页基于 AIDA64 和现代 web 技术的电脑性能监控页
                         </p>

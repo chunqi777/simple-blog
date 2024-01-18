@@ -1,14 +1,14 @@
 'use client'
 
-import { memo, useLayoutEffect, useRef, useState } from "react";
-import { cardValue, fetchCardData } from "../lib/data";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { cardValue, fetchCardData } from "../../lib/data";
 import Card from "./card";
 
 interface CardGroupProps {
     currentNum: number
 }
 
-const CardGroup = memo(function CardGroup({ currentNum }: CardGroupProps) {
+export default function CardGroup({ currentNum }: CardGroupProps) {
     const [cardValues, setCardValues] = useState<cardValue[]>([])
     const cardValuesRef = useRef(cardValues)
     const [isLoading, setIsLoading] = useState(true)
@@ -47,6 +47,5 @@ const CardGroup = memo(function CardGroup({ currentNum }: CardGroupProps) {
             })}
         </>
     );
-})
+}
 
-export default CardGroup;

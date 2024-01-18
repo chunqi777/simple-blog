@@ -1,0 +1,66 @@
+.card_wrapper {
+    @apply float-left relative w-full h-[300px] my-[20px] rounded-xl bg-[rgba(255,255,255,0)] shadow-[0_1px_20px_-6px_rgba(0,0,0,.5)] text-left hover:shadow-[0_5px_10px_5px_rgba(110,110,110,.4)] transition-all;
+}
+
+.card_wrapper:hover img ,
+.card_wrapper:focus img{
+    @apply rotate-[3deg] scale-[1.2];
+}
+
+.card_wrapper:hover .title,
+.card_wrapper:focus .title{
+    @apply text-[#FE9600]
+}
+
+.card_wrapper .card_content{
+    @apply w-4/5;
+}
+
+.card_img {
+    @apply w-[55%] h-full relative block overflow-hidden float-right rounded-[0_12px_12px_0];
+}
+
+.card_content_wrapper {
+    @apply float-right w-[40%] flex mx-auto mt-4;
+}
+
+.card_wrapper:nth-child(odd) .card_img,
+.card_wrapper:nth-child(odd) img {
+    @apply float-left rounded-[12px_0_0_12px];
+}
+
+.card_wrapper:nth-child(odd) .date {
+    @apply justify-end;
+}
+
+.card_wrapper .title {
+    @apply text-lg my-4 transition-colors duration-[450ms];
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 2;
+}
+
+.card_wrapper .content {
+    @apply my-4 text-[#666] text-[15px];
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 4;
+}
+
+.card_wrapper .date {
+    @apply text-[#888] font-[12px] flex items-center;
+}
+
+.card_wrapper .icon_time {
+    @apply w-[18px] h-[18px] mx-1 inline-block;
+}
+
+.card_wrapper .meta{
+    @apply flex flex-row justify-around text-[#888] text-[13px];
+}
