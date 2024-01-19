@@ -1,8 +1,22 @@
+'use client'
+
 import Link from "next/link"
+import { useLayoutEffect, useState } from "react"
+import { ArchivesList, fetchArchivesList } from "../../lib/data"
 
 export default function ArchivesHome() {
 
-    const data = ["随便聊聊", "python", "c++", "java", "js", "html", "css", "ts", "c#", "php", "sql", "go", "rust", "kotlin", "swift", "dart",]
+    const [data, setData] = useState<ArchivesList>([])
+
+
+    useLayoutEffect(() => {
+        const fetchData = async () => {
+            const res = await fetchArchivesList()
+            setData(res)
+        }
+
+        fetchData()
+    }, [])
 
     return (
         <div className="w-full h-screen flex justify-center items-center pt-[56px] bg-slate-50">

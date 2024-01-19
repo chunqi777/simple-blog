@@ -1,11 +1,11 @@
 'use client'
 
 import { cardValue, fetchTypeListData } from "@/app/lib/data";
-import ArchivesCardSkeleton from "@/app/ui/skeleton/archivesCardSkeleton";
+import ArchivesCardSkeleton from "@/app/ui/home/skeleton/archivesCardSkeleton";
 import Image from "next/image";
 import { Suspense, lazy, useLayoutEffect, useState } from "react";
 
-const ArchivesCard = lazy(() => import("@/app/ui/archivesCard"));
+const ArchivesCard = lazy(() => import("@/app/ui/home/archivesCard"));
 
 interface archivesListProps {
     params: {

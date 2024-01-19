@@ -1,26 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import styles from './MDEditor.module.css';
-
+import './MDEditor.css';
+import './github-markdown.css';
 
 function MDEditor() {
-    const [markdownText, setMarkdownText] = useState('');
-    useEffect(() => {
-        const storedMarkdownText = decodeURIComponent(document.cookie.split('=')[1] || '');
-        setMarkdownText(storedMarkdownText);
-    }, [])
-
-    const handleInputChange = (event: any) => {
-        setMarkdownText(event.target.value);
-        document.cookie = `markdownText=${encodeURIComponent(event.target.value)}; max-age=3153600; path=/`;
-    };
+    const [markdown, setMarkdown] = useState('');
 
     return (
-        <div className={styles.markdown}>
-            <textarea rows={10} value={markdownText} onChange={handleInputChange} />
-            <ReactMarkdown>{markdownText}</ReactMarkdown>
+        <div className="md-editor">
+            <div className="md-input">
+                <textarea value={markdown} onChange={(e) => setMarkdown(e.target.value)} />
+            </div>
+            <div className="markdown-body markdown">
+                <ReactMarkdown>{markdown}</ReactMarkdown>
+            </div>
         </div>
     );
 }

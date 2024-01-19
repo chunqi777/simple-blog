@@ -1,6 +1,6 @@
-import { randomInt } from "./lib/utils";
-import Content from "./ui/content";
-import Overview from "./ui/overview";
+import { randomInt } from "../lib/utils";
+import Content from "../ui/home/content";
+import Overview from "../ui/home/overview";
 
 
 export default function Home() {

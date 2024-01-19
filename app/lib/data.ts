@@ -48,3 +48,14 @@ export async function fetchTypeListData() {
 
     return values;
 }
+
+export type ArchivesList = string[]
+
+export async function fetchArchivesList() {
+    unstable_noStore()
+
+    const values: ArchivesList = ["随便聊聊", "python", "c++", "java", "js", "html", "css", "ts", "c#", "php", "sql", "go", "rust", "kotlin", "swift", "dart",]
+
+
+    return values;
+}

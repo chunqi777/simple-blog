@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { cardValue, fetchCardData } from "../../lib/data";
+import { useLayoutEffect, useRef, useState } from "react";
+import { cardValue, fetchCardData } from "../../../lib/data";
 import Card from "./card";
 
 interface CardGroupProps {
