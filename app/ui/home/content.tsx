@@ -6,7 +6,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
-import CardGroup from "./cards/cardGroup";
+import CardGroup from "../cards/cardGroup";
 
 
 const images = [

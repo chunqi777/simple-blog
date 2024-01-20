@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cardValue } from "../../../lib/data";
+import { cardValue } from "../../lib/data";
 import "./card.css";
 
 export default function Card({ value, index }: { value: cardValue, index: string }) {
