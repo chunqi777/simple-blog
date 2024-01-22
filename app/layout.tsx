@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
-  const scroll: boolean = true
-
   return (
     <html lang="en">
       <body className={inter.className}>

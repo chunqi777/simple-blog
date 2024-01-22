@@ -27,7 +27,7 @@
 }
 
 .markdown code{
-    @apply bg-[rgba(254,250,199,1)] text-[#FE9600] p-1 rounded-md text-inherit;
+    @apply bg-[rgba(254,150,0,.5)] text-[#FE9600] p-1 rounded-md text-inherit;
 }
 
 .markdown a{

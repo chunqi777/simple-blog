@@ -20,10 +20,11 @@ export default function SideLinks() {
                         return (
                             <div key={index} className="w-full h-[64px] bg-white">
                                 <Link href={link.href} key={index}
-                                    className={clsx("flex justify-center items-center w-full h-14 bg-shadow rounded-xl transition-colors",
-                                        "hover:text-[rgba(254,150,0)] hover:bg-[rgba(254,150,0,.2)]",
+                                    className={clsx("flex justify-center items-center w-full h-14  rounded-xl transition-colors",
+                                        "hover:text-[rgba(254,150,0)] hover:bg-origin-20",
                                         {
-                                            "bg-[rgba(254,150,0,.2)] text-[rgba(254,150,0)]": pathname === link.href,
+                                            "bg-origin-20 text-[rgba(254,150,0)]": pathname === link.href,
+                                            "bg-shadow": pathname !== link.href
                                         })}>
                                     <div>{link.title}</div>
                                 </Link>
