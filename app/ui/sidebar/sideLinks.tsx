@@ -34,9 +34,11 @@ export default function SideLinks() {
                     })}
                 </>
             </div>
-            <button className="bg-shadow w-full h-14 rounded-xl hover:text-[rgba(254,150,0)] hover:bg-[rgba(254,150,0,.2)] transition-colors">
-                Sign Out
-            </button>
+            <Link href={"/"} className="bg-shadow w-full h-14 rounded-xl flex justify-center items-center hover:text-[rgba(254,150,0)] hover:bg-[rgba(254,150,0,.2)] transition-colors">
+                <span>
+                    Sign Out
+                </span>
+            </Link>
         </div>
 
     )

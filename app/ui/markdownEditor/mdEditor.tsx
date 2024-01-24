@@ -1,23 +1,19 @@
 'use client'
 
-import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './MDEditor.css';
 import './github-markdown.css';
 
-function MDEditor() {
-    const [markdown, setMarkdown] = useState('');
+interface MDEditorProps {
+    content: string; // 接收Markdown格式的文本内
+}
 
+export function MDEditor({ content }: MDEditorProps) {
     return (
         <div className="md-editor">
-            <div className="md-input">
-                <textarea value={markdown} onChange={(e) => setMarkdown(e.target.value)} />
-            </div>
             <div className="markdown-body markdown">
-                <ReactMarkdown>{markdown}</ReactMarkdown>
+                <ReactMarkdown>{content}</ReactMarkdown>
             </div>
         </div>
     );
 }
-
-export default MDEditor;

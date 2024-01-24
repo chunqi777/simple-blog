@@ -1,61 +1,78 @@
-import { useState } from "react";
+'use client'
+
+import { fetchAllPaperData, paperValue } from "@/app/lib/data";
+import { useRouter } from "next/navigation";
+import { useLayoutEffect, useRef, useState } from "react";
 import { CheckIcon, PencilSquareIcon, TrashIcon, XMarkIcon } from "../icons/icon";
 import Pagination from "../pagination/pagination";
 import Search from "../search/search";
 
-const value = [
-    { id: "12341111111111111111133333333333333333333", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 1 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 1 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-    { id: "1234", title: "简单博客", type: "java", time: "3024-1-23", status: 0 },
-]
 
 // 导出Table函数
 export default function Table() {
-    // 声明一个搜索状态变量，并设置初始值为空字符串
-    const [search, setSearch] = useState<string>("");
-    // 声明一个数据变量，并设置初始值为空数组
-    const [data, setData] = useState<any[]>([]);
+    const router = useRouter()
+    // 定义一个value状态，用于存储数据
+    const [value, setValue] = useState<paperValue[]>([])
+    // 使用useRef创建一个valueRef，用于存储value的值
+    const valueRef = useRef(value)
+    // 定义一个data状态，用于存储当前页的数据
+    const [data, setData] = useState<paperValue[]>(value)
+    // 使用useRef创建一个pageCurrent，用于存储当前页
+    const pageCurrent = useRef(1)
+    // 定义每一页显示的数据条数
+    const pageSize = 6
+    // 定义数据的总条数
+    const total = valueRef.current.length
+
+
+    // 使用useLayoutEffect，在页面渲染时，获取数据
+    useLayoutEffect(() => {
+        const init = async () => {
+            const paperData = await fetchAllPaperData()
+            // 更新value状态
+            setValue(paperData)
+            // 更新valueRef的值
+            valueRef.current = paperData
+            // 更新当前页的数据
+            handlePageChange()
+        }
+
+        init()
+    }, [])
+
+    // 定义一个handleSearchChange函数，用于处理搜索功能
+    const handleSearchChange = (search: string) => {
+        // 如果搜索内容为空，则将valueRef的值赋值给value
+        if (search === "") {
+            valueRef.current = value
+            // 将当前页重置为1
+            pageCurrent.current = 1
+            // 更新当前页的数据
+            handlePageChange()
+            return;
+        }
+
+        // 根据搜索内容，过滤数据
+        const matchData = valueRef.current.filter((item) => item.title.includes(search))
+        // 将过滤后的数据赋值给valueRef
+        valueRef.current = matchData
+        // 更新当前页的数据
+        handlePageChange()
+    }
+
+    // 定义一个handlePageChange函数，用于处理页数变化
+    const handlePageChange = (page: number = 1) => {
+        // 根据当前页和每页显示的数据条数，获取当前页的数据
+        setData(valueRef.current.slice((page - 1) * pageSize, page * pageSize))
+    }
+
+    const handleEditor = (data: paperValue) => {
+    }
 
     return (
         <div className="w-full h-full flex flex-col">
             <div className="w-full h-10">
-                <Search searchValue={setSearch} searchWidth="512px" />
+                <Search onChange={handleSearchChange} searchWidth="512px" />
             </div>
             <div className="w-full h-[calc(100%-120px)] min-h-[580px] bg-shadow rounded my-4">
                 <div className="grid grid-cols-6 grid-rows-1 items-center justify-items-center h-16 text-xl font-bold">
@@ -74,7 +91,7 @@ export default function Table() {
                                         <span className="px-2 truncate">{item.id}</span>
                                         <span className="px-2 truncate">{item.title}</span>
                                         <span className="px-2 truncate">{item.type}</span>
-                                        <span className="px-2 truncate">{item.time}</span>
+                                        <span className="px-2 truncate">{item.date}</span>
                                         {item.status === 0 ? (
                                             <div className="w-full h-full relative select-none">
                                                 <span className="bg-green-500 w-4/5 h-10 rounded-full flex items-center justify-center text-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
@@ -89,10 +106,9 @@ export default function Table() {
                                                     <XMarkIcon className="ml-4" strokeWidth={3} width="24px" />
                                                 </span>
                                             </div>
-
                                         )}
                                         <div>
-                                            <button className="mx-2 h-10 w-10 border-solid border-2 px-1 py-1 rounded hover:scale-[1.2] transition-transform duration-300">
+                                            <button onClick={() => handleEditor(item)} className="mx-2 h-10 w-10 border-solid border-2 px-1 py-1 rounded hover:scale-[1.2] transition-transform duration-300">
                                                 <PencilSquareIcon width="28px" />
                                             </button>
                                             <button className="mx-2 h-10 w-10 border-solid border-2 px-1 py-1 rounded hover:scale-[1.2] transition-transform duration-300">
@@ -110,7 +126,12 @@ export default function Table() {
                     </>
                 </div>
             </div>
-            <Pagination data={value} setData={setData} pageSize={6} />
+            <Pagination
+                pageSize={pageSize}
+                total={total}
+                pageCurrent={pageCurrent}
+                currentChange={handlePageChange}
+            />
         </div>
     )
 }

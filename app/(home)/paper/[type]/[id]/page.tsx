@@ -1,4 +1,4 @@
-import MDEditor from "@/app/ui/markdownEditor/mdEditor"
+import { MDEditor } from "@/app/ui/markdownEditor/mdEditor"
 import Image from "next/image"
 
 interface paperProps {
@@ -26,7 +26,7 @@ export default function Paper({ params }: paperProps) {
             </div>
             <div className="h-full w-full max-w-[800px] mx-auto">
                 <div className="pt-10 h-full w-full">
-                    <MDEditor />
+                    <MDEditor content="" />
                 </div>
             </div>
         </div>
