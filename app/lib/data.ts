@@ -11,6 +11,8 @@ export type cardValue = {
     imgName: string,
     imgUrl: string,
     view: number,
+    id?: string,
+    description?: string,
 }
 
 export type paperValue = {
@@ -37,14 +39,13 @@ const value: cardValue = {
 
 
 export async function fetchCardData() {
-    unstable_noStore()
     const res = (await axios.get("/guest/paperAll")).data
 
     if (res.code !== "200") {
         redirect("/404")
     }
 
-    return res.data;
+    return res.data as cardValue[];
 }
 
 export async function fetchTypeListData() {

@@ -1,12 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
-
-'use client'
-
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { useLayoutEffect, useRef, useState } from "react";
-import CardGroup from "../cards/cardGroup";
+import { Suspense } from "react";
+import CardGroupSever from "../cards/cardGroupSever";
 
 
 const images = [
@@ -17,25 +13,7 @@ const images = [
 
 
 export default function Content() {
-    const [groupNum, setGroupNum] = useState<number>(1);
-    const groupNumRef = useRef(groupNum);
 
-
-    const handleClick = () => {
-        setGroupNum(groupNum + 1);
-        groupNumRef.current = groupNum + 1;
-    }
-
-    useLayoutEffect(() => {
-        const savedGroupNum = parseInt(localStorage.getItem('groupNum') || '1');
-        setGroupNum(savedGroupNum);
-        groupNumRef.current = savedGroupNum;
-
-
-        return () => {
-            localStorage.setItem('groupNum', groupNumRef.current.toString());
-        };
-    }, [])
     return (
         <div className="flex h-full mx-auto">
             <div className="flex md:w-[750px] flex-col">
@@ -59,7 +37,10 @@ export default function Content() {
                                             src={img.url}
                                             alt={img.name}
                                             fill
-                                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                                            sizes="(max-width: 340px) 100vw, (max-width: 568px) 50vw, (max-width: 600px) 33vw, (max-width: 768px) 10vw"
+                                            quality={10}
+                                            placeholder="blur"
+                                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhQItX2TmgAAAABJRU5ErkJggg=="
                                             className="object-cover hover:scale-[1.2]  transition-all duration-[450ms] group-focus:scale-[1.2]"
                                         />
                                     </Link>
@@ -79,17 +60,11 @@ export default function Content() {
                         </i>
                         <p className="font-[QuicksandBold]">Discovery</p>
                     </div>
-                    <>
-                        {[...Array(groupNum)].map((_, index) => {
-                            return (
-
-                                <CardGroup key={index} currentNum={index} />
-
-                            )
-                        })}
-                    </>
+                    <Suspense fallback={<div>loading...</div>}>
+                        <CardGroupSever maxLength={5} />
+                    </Suspense>
                 </div>
-                <button onClick={handleClick}>load</button>
+
             </div>
         </div>
     )

@@ -72,7 +72,7 @@ export default function Table() {
     return (
         <div className="w-full h-full flex flex-col">
             <div className="w-full h-10">
-                <Search onChange={handleSearchChange} searchWidth="512px" />
+                <Search onSearchChange={handleSearchChange} searchWidth="512px" />
             </div>
             <div className="w-full h-[calc(100%-120px)] min-h-[580px] bg-shadow rounded my-4">
                 <div className="grid grid-cols-6 grid-rows-1 items-center justify-items-center h-16 text-xl font-bold">
