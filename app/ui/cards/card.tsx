@@ -13,14 +13,14 @@ interface cardProps {
 
 export default function Card({ value }: cardProps) {
     return (
-        <Link href={"/paper/type/" + value.id} className="card_wrapper">
+        <Link href={"/paper/" + value.type + "/" + value.uid} className="card_wrapper">
             <div className="card_img">
                 <Image
                     src={value.imgUrl}
                     alt={value.imgName}
                     fill
                     className="w-full h-full object-cover rounded-[0_12px_12px_0] transition-all duration-[450ms]"
-                    sizes="(max-width: 768px) 100vw, (max-width: 640px) 50vw, 33vw"
+                    quality={10}
                 />
             </div>
             <div className="card_content_wrapper">

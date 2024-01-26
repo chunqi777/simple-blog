@@ -1,7 +1,6 @@
 'use client'
 
 import { fetchAllPaperData, paperValue } from "@/app/lib/data";
-import { useRouter } from "next/navigation";
 import { useLayoutEffect, useRef, useState } from "react";
 import { CheckIcon, PencilSquareIcon, TrashIcon, XMarkIcon } from "../icons/icon";
 import Pagination from "../pagination/pagination";
@@ -10,7 +9,6 @@ import Search from "../search/search";
 
 // 导出Table函数
 export default function Table() {
-    const router = useRouter()
     // 定义一个value状态，用于存储数据
     const [value, setValue] = useState<paperValue[]>([])
     // 使用useRef创建一个valueRef，用于存储value的值
@@ -88,7 +86,7 @@ export default function Table() {
                             data.map((item, index) => {
                                 return (
                                     <div key={index} className="grid grid-cols-6 grid-rows-1  items-center text-center text-lg font-medium bg-white mb-1">
-                                        <span className="px-2 truncate">{item.id}</span>
+                                        <span className="px-2 truncate">{item.uid}</span>
                                         <span className="px-2 truncate">{item.title}</span>
                                         <span className="px-2 truncate">{item.type}</span>
                                         <span className="px-2 truncate">{item.date}</span>

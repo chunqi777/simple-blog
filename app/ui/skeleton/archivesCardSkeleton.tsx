@@ -2,7 +2,7 @@
 export default function ArchivesCardSkeleton() {
     return (
         <div className="relative">
-            <div className="w-full h-48 mt-16 flex flex-row items-center group">
+            <div className="w-full h-48 mt-10 flex flex-row items-center group">
                 <div className="relative min-w-32 h-32 rounded-[100%] overflow-hidden skeleton-loading"></div>
                 <div className="h-[128px] w-full pl-8">
                     <div className="w-full h-6 skeleton-loading"></div>

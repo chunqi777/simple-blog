@@ -11,11 +11,11 @@ export default function ArchivesCard({ value }: archivesProps) {
 
     return (
         <div className="relative">
-            <Link href={"/"} className="w-full h-48 mt-16 flex flex-row items-center group">
+            <Link href={"/paper/" + value.type + "/" + value.uid} className="w-full h-48 mt-10 flex flex-row items-center group">
                 <div className="relative min-w-32 h-32 rounded-[100%] overflow-hidden">
                     <Image
-                        src={"/background/4.png"}
-                        alt="img"
+                        src={value.imgUrl}
+                        alt={value.imgName}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 640px) 50vw, 33vw"
                         className="object-cover"
@@ -24,7 +24,7 @@ export default function ArchivesCard({ value }: archivesProps) {
                 <div className="h-[128px] w-full pl-8">
                     <div className="flex w-full">
                         <div className="w-[400px] truncate inline-block font-[500] group-hover:text-[#FE9600] transition-[color] duration-300">
-                            和现代 web 技术的电脑性能监控页和现代 web 技术的电脑性能监控页和现代 web 技术的电脑性能监控页和现代 web 技术的电脑性能监控页
+                            {value.title}
                         </div>
                         <div className="flex-1 flex items-center justify-end text-[#989898]">
                             <i className="w-5 h-5 mx-1">
@@ -36,7 +36,7 @@ export default function ArchivesCard({ value }: archivesProps) {
                         </div>
                     </div>
                     <div className="w-[590px] truncate line-clamp-3 text-wrap mt-8 text-[rgba(0,0,0,0.66)]">
-                        基于 AIDA64 和现代 web 技术的电脑性能监控页基于 AIDA64 和现代 web 技术的电脑性能监控页基于 AIDA64 和现代 web 技术的电脑性能监控页基于 AIDA64 和现代 web 技术的电脑性能监控页
+                        {value.description}
                     </div>
                 </div>
             </Link>

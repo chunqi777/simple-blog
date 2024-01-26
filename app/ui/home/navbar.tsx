@@ -42,7 +42,7 @@ export default function Navbar() {
     }, [])
 
     return (
-        <div className={clsx("w-full h-14 hidden z-[9999] text-center sm:flex text-[#464646] hover:bg-[rgba(255,255,255,.95)] transition-all duration-[400ms] font-[QuicksandBold]",
+        <div className={clsx("w-full h-14 hidden z-[9999] text-center sm:flex text-[#464646] hover:bg-[rgba(255,255,255,.95)] transition-all duration-[400ms] font-[QuicksandBold] focus-within:bg-[rgba(255,255,255,.95)]",
             {
                 "bg-[transparent]": ScrollTop,
                 "bg-[rgba(255,255,255,.95)]": !ScrollTop,
@@ -54,7 +54,7 @@ export default function Navbar() {
                 </Link>
                 <div className="flex justify-end h-full items-center">
                     <div className="min-w-52 text-xl">
-                        <Search className={clsx({ "*:bg-[transparent]": ScrollTop, "*:border-[transparent]": ScrollTop})} onSearchChange={handleChange} />
+                        <Search className={clsx({ "*:bg-[transparent]": ScrollTop, "*:border-[transparent]": ScrollTop })} onSearchChange={handleChange} />
                     </div>
                     <div className="flex justify-center h-full">
                         <NavLinks />

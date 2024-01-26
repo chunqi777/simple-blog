@@ -22,6 +22,8 @@ export default function FormEditor() {
             imgName: "abab",
             imgUrl: "/background/4.png",
             status: 1,
+            view: 0,
+            description: "测试哦"
         }
 
         createBlog(data).then(() => {
