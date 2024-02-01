@@ -28,6 +28,7 @@ export default function ArchivesList({ params }: archivesListProps) {
                     alt="img"
                     fill
                     sizes="(max-width: 1000px) 100vw, (max-width: 768px) 50vw, (max-width: 648px) 33vw"
+                    quality={20}
                     className="object-cover select-none"
                 />
                 <div className="absolute bottom-[35%] left-1/2 translate-x-[-50%] min-w-40 text-4xl font-bold text-white bg-[rgba(0,0,0,.6)] px-10 py-3 text-center rounded">

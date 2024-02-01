@@ -1,6 +1,7 @@
 'use client'
 
-import { fetchAllPaperData, paperValue } from "@/app/lib/data";
+import { fetchAllPaperData } from "@/app/lib/data";
+import { tableCard } from "@/app/lib/entity/paper";
 import { useLayoutEffect, useRef, useState } from "react";
 import { CheckIcon, PencilSquareIcon, TrashIcon, XMarkIcon } from "../icons/icon";
 import Pagination from "../pagination/pagination";
@@ -10,11 +11,11 @@ import Search from "../search/search";
 // 导出Table函数
 export default function Table() {
     // 定义一个value状态，用于存储数据
-    const [value, setValue] = useState<paperValue[]>([])
+    const [value, setValue] = useState<tableCard[]>([])
     // 使用useRef创建一个valueRef，用于存储value的值
     const valueRef = useRef(value)
     // 定义一个data状态，用于存储当前页的数据
-    const [data, setData] = useState<paperValue[]>(value)
+    const [data, setData] = useState<tableCard[]>(value)
     // 使用useRef创建一个pageCurrent，用于存储当前页
     const pageCurrent = useRef(1)
     // 定义每一页显示的数据条数
@@ -64,7 +65,7 @@ export default function Table() {
         setData(valueRef.current.slice((page - 1) * pageSize, page * pageSize))
     }
 
-    const handleEditor = (data: paperValue) => {
+    const handleEditor = (data: tableCard) => {
     }
 
     return (

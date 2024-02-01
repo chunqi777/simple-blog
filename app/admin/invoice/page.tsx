@@ -1,5 +1,3 @@
-'use client'
-
 import { PlusIcon } from "@/app/ui/icons/icon"
 import Table from "@/app/ui/table/table"
 import Link from "next/link"

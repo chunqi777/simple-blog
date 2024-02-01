@@ -1,10 +1,15 @@
 'use client'
 
+import { getSearch } from "@/app/lib/data";
+import { search } from "@/app/lib/entity/paper";
+import { debounce } from "@/app/lib/utils";
 import clsx from "clsx";
 import Link from "next/link";
-import { useLayoutEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useLayoutEffect, useRef, useState } from "react";
 import Search from "../search/search";
 import NavLinks from "./navLinks";
+import './navbar.css';
 
 
 function isScrollTop(): boolean {
@@ -13,11 +18,29 @@ function isScrollTop(): boolean {
 
 export default function Navbar() {
     const [ScrollTop, setBackgroundColor] = useState<boolean | null>(true)
+    const [searchList, setSearchList] = useState<search[]>([])
+    const searchValue = useRef("")
+    const router = useRouter()
 
-    const [searchValue, setSearchValue] = useState<string>('')
+    const search = (value: string) => {
+        getSearch(value).then(res => {
+            setSearchList(res)
+        });
+    };
 
-    const handleChange = (value: string) => {
-        setSearchValue(value)
+    const handleChange = debounce((value: string) => {
+        if (value !== "") {
+            searchValue.current = value;
+            search(value);
+        } else if (value === "") {
+            setSearchList([]);
+        }
+    }, 500);
+
+    const onPressEnter = () => {
+        router.push(`/search?value=${searchValue.current}`)
+        setSearchList([]);
+        searchValue.current = ""
     }
 
     useLayoutEffect(() => {
@@ -42,7 +65,7 @@ export default function Navbar() {
     }, [])
 
     return (
-        <div className={clsx("w-full h-14 hidden z-[9999] text-center sm:flex text-[#464646] hover:bg-[rgba(255,255,255,.95)] transition-all duration-[400ms] font-[QuicksandBold] focus-within:bg-[rgba(255,255,255,.95)]",
+        <div className={clsx("navbar",
             {
                 "bg-[transparent]": ScrollTop,
                 "bg-[rgba(255,255,255,.95)]": !ScrollTop,
@@ -54,7 +77,7 @@ export default function Navbar() {
                 </Link>
                 <div className="flex justify-end h-full items-center">
                     <div className="min-w-52 text-xl">
-                        <Search className={clsx({ "*:bg-[transparent]": ScrollTop, "*:border-[transparent]": ScrollTop })} onSearchChange={handleChange} />
+                        <Search className={clsx({ "border-[transparent]": ScrollTop })} onSearchChange={handleChange} onPressEnter={onPressEnter} searchList={searchList} />
                     </div>
                     <div className="flex justify-center h-full">
                         <NavLinks />

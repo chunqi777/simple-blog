@@ -1,12 +1,13 @@
 'use client'
 
-import { createBlog, paperValue } from "@/app/lib/data";
+import { createBlog } from "@/app/lib/data";
+import { paperCreate } from "@/app/lib/entity/paper";
 import clsx from "clsx";
 import { useState } from "react";
 import 'react-quill/dist/quill.snow.css';
 import MdVditor from "../markdownEditor/MdVditor";
 
-export default function FormEditor() {
+export default function FromPaper() {
     const [title, setTitle] = useState("");
     const [type, setType] = useState("");
     const [value, setValue] = useState("");
@@ -14,7 +15,7 @@ export default function FormEditor() {
 
     const fromSubmit = () => {
         setIsLoading(true);
-        const data: paperValue = {
+        const data: paperCreate = {
             date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
             title: title,
             type: type,

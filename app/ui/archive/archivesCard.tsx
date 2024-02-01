@@ -1,10 +1,12 @@
+import { card } from "@/app/lib/entity/paper";
 import Image from "next/image";
 import Link from "next/link";
-import { cardValue } from "../../lib/data";
+import { TimeIcon } from "../icons/icon";
+
 
 
 interface archivesProps {
-    value: cardValue
+    value: card
 }
 
 export default function ArchivesCard({ value }: archivesProps) {
@@ -19,6 +21,7 @@ export default function ArchivesCard({ value }: archivesProps) {
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 640px) 50vw, 33vw"
                         className="object-cover"
+                        quality={20}
                     />
                 </div>
                 <div className="h-[128px] w-full pl-8">
@@ -27,11 +30,7 @@ export default function ArchivesCard({ value }: archivesProps) {
                             {value.title}
                         </div>
                         <div className="flex-1 flex items-center justify-end text-[#989898]">
-                            <i className="w-5 h-5 mx-1">
-                                <svg data-slot="icon" fill="none" strokeWidth="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-                                </svg>
-                            </i>
+                            <TimeIcon className="w-5 h-5 mx-1" />
                             {value.date}
                         </div>
                     </div>

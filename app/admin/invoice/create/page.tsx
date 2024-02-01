@@ -1,12 +1,10 @@
-'use client'
-
-import Form from "@/app/ui/formEditor/from"
+import FromPaper from "@/app/ui/form/fromPaper"
 
 
 export default function CreateHome() {
     return (
         <div>
-            <Form />
+            <FromPaper />
         </div>
     )
 }

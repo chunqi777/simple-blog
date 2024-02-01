@@ -7,6 +7,7 @@ import Link from "next/link";
 const links = [
     { name: 'Home', href: '/' },
     { name: 'Type', href: '/archives' },
+    { name: 'About', href: '/about' },
 ];
 
 export default function NavLinks() {

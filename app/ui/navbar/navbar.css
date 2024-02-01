@@ -1,0 +1,4 @@
+
+.navbar{
+    @apply w-full h-14 hidden z-[9999] text-center sm:flex text-[#464646] hover:bg-[rgba(255,255,255,.95)] hover:shadow-[0_1px_40px_-8px_rgba(0,0,0,.5)] transition-all duration-[400ms] font-[QuicksandBold] 
+}

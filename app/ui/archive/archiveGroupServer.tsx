@@ -6,7 +6,7 @@ interface ArchiveGroupProps {
     value: string
 }
 
-export default async function ArchiverGroup({value}: ArchiveGroupProps) {
+export default async function ArchiverGroup({ value }: ArchiveGroupProps) {
     const cardValues = await fetchArchivePaperList(value)
 
     if (cardValues.length === 0) {

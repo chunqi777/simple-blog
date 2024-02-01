@@ -1,5 +1,3 @@
-'use client'
-
 export default function AdminHome() {
     return (
         <div className="w-full h-full flex flex-col px-8 py-6 pt-14">

@@ -1,14 +1,15 @@
 'use client'
 
+import { card } from "@/app/lib/entity/paper";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { cardValue } from "../../lib/data";
+import { useLayoutEffect, useRef, useState } from "react";
+import { FoldIcon } from "../icons/icon";
 import "./card.css";
 
 interface cardProps {
-    value: cardValue
+    value: card
 }
 
 export default function Card({ value }: cardProps) {
@@ -47,12 +48,9 @@ export default function Card({ value }: cardProps) {
                             {value.view}
                         </div>
                         <div className="flex items-center">
-                            <i className="h-[18px] w-[18px] mx-1">
-                                <svg value-slot="icon" fill="none" strokeWidth={1.5} stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
-                                </svg>
-                            </i>
+                            <FoldIcon className="h-[18px] w-[18px] mx-1" />
                             {value.type}
+
                         </div>
                     </div>
                     <div className="content">
@@ -68,16 +66,29 @@ export default function Card({ value }: cardProps) {
 }
 
 interface CardGroupProps {
-    value: cardValue[],
+    value: card[],
     maxLength: number,
 }
 
 export function CardGroup({ value, maxLength }: CardGroupProps) {
-    const [cards, setCards] = useState<cardValue[]>(value.slice(0, maxLength))
+    const currentRef = useRef(1)
+    const [cards, setCards] = useState<card[]>(value.slice(0, maxLength * currentRef.current))
+
+    useLayoutEffect(() => {
+        if (localStorage.getItem("currentRef") !== null) {
+            currentRef.current = parseInt(localStorage.getItem("currentRef")!)
+            setCards(value.slice(0, maxLength * currentRef.current))
+        }
+
+        return () => {
+            localStorage.setItem("currentRef", currentRef.current.toString())
+        }
+    }, [maxLength, value])
 
     const handleLoadMore = () => {
         if (value.length > cards.length) {
-            setCards(prev => [...prev, ...value.slice(prev.length, prev.length + maxLength)])
+            currentRef.current += 1
+            setCards(value.slice(0, maxLength * currentRef.current))
         }
     }
 

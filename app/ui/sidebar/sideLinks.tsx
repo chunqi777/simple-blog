@@ -1,5 +1,6 @@
 'use client'
 
+import { SignOut } from "@/app/lib/data"
 import clsx from "clsx"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -34,11 +35,15 @@ export default function SideLinks() {
                     })}
                 </>
             </div>
-            <Link href={"/"} className="bg-shadow w-full h-14 rounded-xl flex justify-center items-center hover:text-[rgba(254,150,0)] hover:bg-[rgba(254,150,0,.2)] transition-colors">
-                <span>
-                    Sign Out
-                </span>
-            </Link>
+            <form action={async () => {
+                await SignOut();
+            }}>
+                <button className="bg-shadow w-full h-14 rounded-xl flex justify-center items-center hover:text-[rgba(254,150,0)] hover:bg-[rgba(254,150,0,.2)] transition-colors">
+                    <span>
+                        Sign Out
+                    </span>
+                </button>
+            </form>
         </div>
 
     )
