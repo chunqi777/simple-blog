@@ -1,7 +1,7 @@
 import { card } from "@/app/lib/entity/paper";
 import Image from "next/image";
 import Link from "next/link";
-import { TimeIcon } from "../icons/icon";
+import { TimeIcon } from "../svgIcon/svgIcon";
 
 
 

@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
-import { FoldIcon } from "../icons/icon";
+import { FoldIcon } from "../svgIcon/svgIcon";
 import "./card.css";
 
 interface cardProps {

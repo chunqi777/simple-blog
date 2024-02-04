@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 
 interface IconProps extends HTMLAttributes<HTMLElement> {
   width?: string;
@@ -9,8 +9,7 @@ const defaultProps: IconProps = {
   width: "20px",
   strokeWidth: 1.5,
 }
-
-export const SearchIcon: React.FC<IconProps> = (props: IconProps) => {
+export function SearchIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -21,7 +20,7 @@ export const SearchIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const CheckIcon: React.FC<IconProps> = (props: IconProps) => {
+export function CheckIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -32,7 +31,7 @@ export const CheckIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const PlusIcon: React.FC<IconProps> = (props: IconProps) => {
+export function PlusIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -43,7 +42,7 @@ export const PlusIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const XMarkIcon: React.FC<IconProps> = (props: IconProps) => {
+export function XMarkIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -54,7 +53,8 @@ export const XMarkIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const PencilSquareIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function PencilSquareIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -65,7 +65,8 @@ export const PencilSquareIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const TrashIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function TrashIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -76,7 +77,8 @@ export const TrashIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const ChevronRightIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function ChevronRightIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -87,7 +89,8 @@ export const ChevronRightIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const ChevronLeftIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function ChevronLeftIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -98,7 +101,8 @@ export const ChevronLeftIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const XCircleIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function XCircleIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -109,7 +113,8 @@ export const XCircleIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const UserIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function UserIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -120,7 +125,8 @@ export const UserIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const KeyIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function KeyIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -131,7 +137,8 @@ export const KeyIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const TimeIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function TimeIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>
@@ -142,7 +149,8 @@ export const TimeIcon: React.FC<IconProps> = (props: IconProps) => {
   )
 }
 
-export const FoldIcon: React.FC<IconProps> = (props: IconProps) => {
+
+export function FoldIcon(props: IconProps) {
   const mergedProps = { ...defaultProps, ...props };
   return (
     <i className={"block " + mergedProps.className} style={{ color: mergedProps.color, width: mergedProps.width, height: mergedProps.width }}>

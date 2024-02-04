@@ -3,9 +3,9 @@
 import { fetchAllPaperData } from "@/app/lib/data";
 import { tableCard } from "@/app/lib/entity/paper";
 import { useLayoutEffect, useRef, useState } from "react";
-import { CheckIcon, PencilSquareIcon, TrashIcon, XMarkIcon } from "../icons/icon";
 import Pagination from "../pagination/pagination";
 import Search from "../search/search";
+import { CheckIcon, PencilSquareIcon, TrashIcon, XMarkIcon } from "../svgIcon/svgIcon";
 
 
 // 导出Table函数

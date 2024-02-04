@@ -1,16 +1,9 @@
-import SearchPageServer from "@/app/ui/search/searchPageServer";
+import SearchList from "@/app/ui/search/searchList";
 
-interface SearchPageProps {
-    searchParams: {
-        [key: string]: string;
-    }
-}
-
-export default function SearchPage({ searchParams }: SearchPageProps) {
+export default function SearchPage() {
     return (
         <div className="w-full h-full min-h-[calc(100vh-150px)]">
-                <SearchPageServer query={searchParams} />
-
+            <SearchList />
         </div>
     )
 }

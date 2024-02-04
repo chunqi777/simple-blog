@@ -1,4 +1,5 @@
-type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
+type Prettify<T> = { [K in keyof T]: T[K] } & {}
+type Optional<T, K extends keyof T> = Prettify<Omit<T, K> & Partial<Pick<T, K>>>
 
 export type paper = {
     uid: string,

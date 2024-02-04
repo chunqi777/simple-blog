@@ -8,32 +8,84 @@ import { signIn, signOut } from "./auth/auth";
 import { User, archives, card, paperContent, paperCreate, search, tableCard } from "./entity/paper";
 
 export async function fetchCardData() {
-    const res = (await axios.get("/guest/paperAll")).data
+    try {
+        const res = (await axios.get("/guest/paperAll")).data;
 
-    if (res.code !== "200") {
-        redirect("/404")
+        if (res.code !== "200") {
+            redirect("/404");
+            throw new Error("获取卡片数据失败");
+        }
+
+        return res.data as card[];
+    } catch (error) {
+        console.log(error);
+        return [];
     }
 
-    return res.data as card[];
 }
 
 export async function fetchArchivePaperList(type: string) {
-    const res = (await axios.get(`/guest/archives/${type}`)).data
+    try {
+        const res = (await axios.get(`/guest/archives/${type}`)).data
 
-    return res.data as card[];
+        if (res.code !== "200") {
+            redirect("/404");
+            throw new Error("获取档案数据失败");
+        }
+
+        return res.data as card[];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+
+
+
 }
 
 export async function fetchTypeList() {
-    const res = (await axios.get("/guest/typeAll")).data
+    try {
+        const res = (await axios.get("/guest/typeAll")).data
 
-    return res.data as archives[];
+        if (res.code !== "200") {
+            redirect("/404");
+            throw new Error("获取类别数据失败");
+        }
+
+        return res.data as archives[];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+
+
 
 }
 
 export async function fetchPaperData(type: string, uid: string) {
-    const res = (await axios.get(`/guest/paper/${type}/${uid}`)).data
+    try {
+        const res = (await axios.get(`/guest/paper/${type}/${uid}`)).data
 
-    return res.data as paperContent;
+        if (res.code !== "200") {
+            redirect("/404");
+            throw new Error("获取文章数据失败");
+        }
+
+        return res.data as paperContent;
+    } catch (error) {
+        console.log(error);
+        return {
+            uid: "1234111111111111111113333333333333333333333",
+            title: "文章不存在",
+            date: "3024-1-23",
+            content: "文章不存在",
+            imgName: "1",
+            imgUrl: "/background/1.jpg",
+            view: 0,
+        } as paperContent;
+    }
+
+
 }
 
 

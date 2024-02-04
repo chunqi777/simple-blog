@@ -2,7 +2,7 @@
 
 import { authenticate } from '@/app/lib/data';
 import { useFormState, useFormStatus } from 'react-dom';
-import { KeyIcon, UserIcon } from "../icons/icon";
+import { KeyIcon, UserIcon } from "../svgIcon/svgIcon";
 
 
 export default function FromLogin() {

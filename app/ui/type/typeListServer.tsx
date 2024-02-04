@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export default async function TypeList() {
     const archivesValue = await fetchTypeList();
+
     return (
         archivesValue.map((data, key) => {
             return (

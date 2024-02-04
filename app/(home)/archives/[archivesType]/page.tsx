@@ -1,3 +1,5 @@
+'use client'
+
 import ArchiverGroup from "@/app/ui/archive/archiveGroupServer";
 import ArchivesCardSkeleton from "@/app/ui/skeleton/archivesCardSkeleton";
 // 导入 cardValue 和 fetchTypeListData 函数
@@ -5,7 +7,6 @@ import ArchivesCardSkeleton from "@/app/ui/skeleton/archivesCardSkeleton";
 import Image from "next/image";
 // 导入 Suspense、lazy、useLayoutEffect、useState 函数
 import { Suspense } from "react";
-
 
 // 定义 archivesListProps 接口
 interface archivesListProps {

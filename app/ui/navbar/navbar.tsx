@@ -1,5 +1,6 @@
 'use client'
 
+// 导入getSearch函数，search函数，debounce函数，clsx函数，Link函数，useRouter函数，useLayoutEffect函数，useRef函数，useState函数，Search函数，NavLinks函数，navbar.css文件
 import { getSearch } from "@/app/lib/data";
 import { search } from "@/app/lib/entity/paper";
 import { debounce } from "@/app/lib/utils";
@@ -12,37 +13,52 @@ import NavLinks from "./navLinks";
 import './navbar.css';
 
 
+// 定义isScrollTop函数，用于判断页面是否滚动到顶部
 function isScrollTop(): boolean {
     return document.documentElement.scrollTop === 0
 }
 
+// 定义Navbar函数，用于渲染导航栏
 export default function Navbar() {
+    // 使用useState函数定义ScrollTop状态，用于控制背景颜色
     const [ScrollTop, setBackgroundColor] = useState<boolean | null>(true)
+    // 使用useState函数定义searchList状态，用于存储搜索结果
     const [searchList, setSearchList] = useState<search[]>([])
+    // 使用useRef函数定义searchValue引用，用于存储搜索值
     const searchValue = useRef("")
+    // 使用useRouter函数定义router引用，用于获取路由信息
     const router = useRouter()
 
-    const search = (value: string) => {
-        getSearch(value).then(res => {
-            setSearchList(res)
-        });
-    };
+    // 定义search函数，用于搜索数据
+    const search = debounce(async (value: string) => {
+        const data = await getSearch(value)
 
-    const handleChange = debounce((value: string) => {
-        if (value !== "") {
-            searchValue.current = value;
-            search(value);
-        } else if (value === "") {
-            setSearchList([]);
-        }
+        setSearchList(data)
     }, 500);
 
+    // 定义handleChange函数，用于处理搜索值的变化
+    const handleChange = (value: string) => {
+        searchValue.current = value;
+
+        if (value.length === 0) {
+            setSearchList([]);
+        } else {
+            search(value);
+        }
+    };
+
+    // 定义onPressEnter函数，用于跳转到搜索页面
     const onPressEnter = () => {
-        router.push(`/search?value=${searchValue.current}`)
+        if (searchValue.current.length > 0) {
+            router.push(`/search?q=${searchValue.current}`)
+        } else {
+            router.push('/search')
+        }
+
         setSearchList([]);
-        searchValue.current = ""
     }
 
+    // 使用useLayoutEffect函数，在组件挂载时，添加滚动事件监听，并设置背景颜色
     useLayoutEffect(() => {
         const handleScroll = () => {
             setBackgroundColor(isScrollTop())
@@ -64,6 +80,7 @@ export default function Navbar() {
         }
     }, [])
 
+    // 返回渲染结果
     return (
         <div className={clsx("navbar",
             {

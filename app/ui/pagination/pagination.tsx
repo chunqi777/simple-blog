@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { useEffect } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "../icons/icon";
+import { ChevronLeftIcon, ChevronRightIcon } from "../svgIcon/svgIcon";
 
 interface PaginationProps {
     pageSize: number,
