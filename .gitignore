@@ -39,8 +39,5 @@ next-env.d.ts
 # img
 .png
 
-# api
-api.ts
-
 #Todo
 TODO.txt
